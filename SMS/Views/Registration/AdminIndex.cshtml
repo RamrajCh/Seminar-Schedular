@@ -1,0 +1,42 @@
+@model IEnumerable<SMS.Models.Registration>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout= "../Shared/_AdminPageLayout.cshtml";
+}
+
+<h1>Registration Index</h1>
+
+<p>
+    <a asp-action="AdminCreate">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.attendee)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.seminar)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.attendee.email)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.seminar.link)
+            </td>
+            <td>
+                <a asp-action="AdminEdit" asp-route-id="@item.id">Edit</a> |
+                <a asp-action="AdminDetails" asp-route-id="@item.id">Details</a> |
+                <a asp-action="AdminDelete" asp-route-id="@item.id">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

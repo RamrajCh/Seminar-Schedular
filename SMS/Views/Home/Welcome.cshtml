@@ -1,0 +1,52 @@
+@{
+    ViewData["Title"] = "Welcome";
+}
+
+<h1>Welcome to Seminar Management System!</h1>
+
+<p>
+    <a class="btn btn-primary" href="@Url.Action("Login", "Home")">Login</a>
+    <a class="btn btn-secondary" href="@Url.Action("Register", "Home")">Register</a>
+</p>
+<hr/>
+
+<p>
+    <a class="btn btn-primary" href="@Url.Action("LoginOrganizer", "Home")">Login As Organizer</a>
+    <a class="btn btn-secondary" href="@Url.Action("RegisterOrganizer", "Home")">Register As Organizer</a>
+</p>
+
+<hr/>
+
+<p>
+    <a class="btn btn-primary" href="@Url.Action("LoginAdmin", "Home")">Login As Admin</a>
+</p>
+
+<table class="table table-striped table-hover caption-top">
+    <caption><legend>Our group members:</legend></caption>
+    <thead>
+        <tr>
+            <th>S.N.</th>
+            <th>Name</th>
+            <th>Student ID</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <th>1</th>
+            <td>Pradip Dhami</td>
+            <td>12001388</td>
+        </tr>
+        <tr>
+            <th>2</th>
+            <td>Bipin Chokhal</td>
+            <td>12001421</td>
+        </tr>
+        <tr>
+            <th>3</th>
+            <td>Milan Kharel</td>
+            <td>12001431</td>
+        </tr>
+        
+    </tbody>
+
+</table>

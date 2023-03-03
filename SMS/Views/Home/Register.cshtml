@@ -1,0 +1,59 @@
+@model SMS.Models.Person
+
+@{
+    ViewData["Title"] = "Register";
+    Layout= "../Shared/_LoginPageLayout.cshtml"; 
+}
+
+<h4>Register</h4>
+
+@if(ViewBag.message != null){
+    <div class="alert alert-danger">
+        @Html.Raw(ViewBag.message)
+    </div>
+}
+
+@using (Html.BeginForm("Register", "Home", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-floating">
+        @Html.LabelFor(m => m.name)
+        @Html.TextBoxFor(m => m.name, "", new { @class = "form-control", @placeholder = "Full Name" })
+        <span asp-validation-for="name" class="text-danger"></span>
+    </div>
+    <div class="form-floating">
+        @Html.LabelFor(m => m.faculty)
+        @Html.DropDownListFor(m => m.faculty, new SelectList(new List<string> { "Accounting", "Information Technology", "Law", "Management/MBA", "TESOL", "Finance" }), "Department/Faculty", new { @class = "form-control" })
+        <span asp-validation-for="faculty" class="text-danger"></span>
+    </div>
+    <div class="form-floating">
+        @Html.LabelFor(m => m.role)
+        @Html.DropDownListFor(m => m.role, new SelectList(new[] { "Student", "Teacher", "Employee" }), "Role", new { @class = "form-control" })
+        <span asp-validation-for="role" class="text-danger"></span>
+    </div>
+    <div class="form-floating">
+        @Html.LabelFor(m => m.joinedDate)
+        <input asp-for="joinedDate" class="form-control" />
+        <span asp-validation-for="joinedDate" class="text-danger"></span>
+    </div>
+    <div class="form-floating">
+        @Html.LabelFor(m => m.koiId)
+        @Html.TextBoxFor(m => m.koiId, "", new { @class = "form-control", @placeholder = "KOI Id" })
+        <span asp-validation-for="koiId" class="text-danger"></span>
+    </div>
+    <div class="form-floating">
+        @Html.LabelFor(m => m.email)
+        @Html.TextBoxFor(m => m.email, "", new { @class = "form-control", @placeholder = "Email" })
+        <span asp-validation-for="email" class="text-danger"></span>
+    </div>
+    <div class="form-floating">
+        @Html.LabelFor(m => m.password)
+        @Html.PasswordFor(m => m.password, new { @class = "form-control", @placeholder = "Password" })
+        <span asp-validation-for="password" class="text-danger"></span>
+    </div>
+    <button class="w-100 btn btn-lg btn-primary" type="submit">Register</button>
+    <p class="mt-2 text-muted">
+        Already have an account? <a class="ml-2" asp-controller="Home" asp-action="Login">Sign In</a>
+    </p>
+}

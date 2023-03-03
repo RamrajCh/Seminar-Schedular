@@ -1,0 +1,44 @@
+@model SMS.Models.Organizer
+
+@{
+    ViewData["Title"] = "Register Organizer";
+    Layout= "../Shared/_LoginPageLayout.cshtml"; 
+}
+
+<h4>Register As Organizer</h4>
+
+@if(ViewBag.message != null){
+    <div class="alert alert-danger">
+        @Html.Raw(ViewBag.message)
+    </div>
+}
+
+@using (Html.BeginForm("RegisterOrganizer", "Home", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-floating">
+        @Html.LabelFor(m => m.name)
+        @Html.TextBoxFor(m => m.name, "", new { @class = "form-control", @placeholder = "Full Name" })
+        <span asp-validation-for="name" class="text-danger"></span>
+    </div>
+    <div class="form-floating">
+        @Html.LabelFor(m => m.email)
+        @Html.TextBoxFor(m => m.email, "", new { @class = "form-control", @placeholder = "KOI Id" })
+        <span asp-validation-for="email" class="text-danger"></span>
+    </div>
+    <div class="form-floating">
+        @Html.LabelFor(m => m.password)
+        @Html.PasswordFor(m => m.password, new { @class = "form-control", @placeholder = "Password" })
+        <span asp-validation-for="password" class="text-danger"></span>
+    </div>
+    <div class="form-floating form-hidden">
+        @Html.LabelFor(m =>m.isVerified)
+        @Html.CheckBoxFor(m => m.isVerified, new { @class = "form-control", @value = "false" })
+        <span asp-validation-for="isVerified" class="text-danger"></span>
+    </div>    
+    <button class="w-100 btn btn-lg btn-primary" type="submit">Register</button>
+    <p class="mt-2 text-muted">
+        Already have an account? <a class="ml-2" asp-controller="Home" asp-action="LoginOrganizer">Sign In</a>
+    </p>
+}

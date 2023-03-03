@@ -1,0 +1,48 @@
+@model IEnumerable<SMS.Models.Seminar>
+
+@{
+    ViewData["Title"] = "Upcoming Unregistered Seminar";
+}
+
+<h1>Unregistered Upcoming Seminars</h1>
+<hr>
+
+<div class="row">
+@foreach (var item in Model) {
+    <div class="col-md-4">
+        <div class="card" style="box-shadow: 1px 1px 2rem rgba(0, 0, 0, 0.3); border-radius: 10px; margin-bottom:20px; height:300px;">
+            <div class="card-body seminar-contents">
+                <div class="seminar-container">
+                    <h3 class="seminar-date">@Html.DisplayFor(modelItem => item.Seminar_Date), @Html.DisplayFor(modelItem => item.Starting_Time) - @Html.DisplayFor(modelItem => item.Ending_Time)</h3>
+                    <h1 class="seminar-topic">@Html.DisplayFor(modelItem => item.topic)</h1>
+                    <h3 class="seminar-date">Organized By: @Html.DisplayFor(modelItem => item.Organizer.name)</h3>
+                    <p class="seminar-info">
+                        <span class="seminar-info-label">Platform: </span>
+                        <span class="seminar-info-value">@Html.DisplayFor(modelItem => item.platform)</span>
+                    </p>
+                    @if (item.linkId != null) {
+                        <p class="seminar-info">
+                            <span class="seminar-info-label">Link ID: </span>
+                            <span class="seminar-info-value">@Html.DisplayFor(modelItem => item.linkId)</span>
+                        </p>
+                    }
+                    @if (item.password != null){
+                        <p class="seminar-info">
+                            <span class="seminar-info-label">Password: </span>
+                            <span class="seminar-info-value">@Html.DisplayFor(modelItem => item.password)</span>
+                        </p>
+                    }
+                    <p class="seminar-info">
+                        <span class="seminar-info-label">Seminar Type: </span>
+                        <span class="seminar-info-value">@Html.DisplayFor(modelItem => item.type)</span>
+                    </p>
+                    <p class="mt-2">
+                        <a class="btn btn-primary" asp-action="ViewSeminarDetails" asp-controller="Attendees" asp-route-id="@item.id">Details</a>
+                        <a class="btn btn-success" asp-action="RegisterSeminar" asp-controller="Attendees" asp-route-id="@item.id">Register to Seminar</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+</div>

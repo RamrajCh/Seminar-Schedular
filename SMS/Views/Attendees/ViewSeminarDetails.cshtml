@@ -1,0 +1,105 @@
+@model SMS.Models.Seminar
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Details</h1>
+
+<div class="row">
+    <div class="col-md-12">
+        @if(ViewBag.isRegistered != null){
+            <div class="alert alert-success">
+                <strong>Wow! </strong>You are registered to this seminar.
+                <a class="btn btn-danger" asp-action="UnregisterSeminar" asp-controller="Attendees" asp-route-id="@Model.id">Unregister to this seminar.</a>
+            </div>
+        }
+        else{
+            <div class="alert alert-danger">
+                <strong>Oops!</strong> You are not registered to this seminar.
+                <a class="btn btn-success" asp-action="RegisterSeminar" asp-controller="Attendees" asp-route-id="@Model.id">Register to this seminar.</a>
+            </div>
+        }
+    </div>
+</div>
+
+<div>
+   <div class="row">
+       <div class="col-md-6">
+            <h4>Seminar Details</h4>
+            <dl class="row">
+                <dt class = "col-sm-5">
+                    @Html.DisplayNameFor(model => model.topic)
+                </dt>
+                <dd class = "col-sm-10">
+                    @Html.DisplayFor(model => model.topic)
+                </dd>
+                <dt class = "col-sm-5">
+                    @Html.DisplayNameFor(model => model.platform)
+                </dt>
+                <dd class = "col-sm-10">
+                    @Html.DisplayFor(model => model.platform)
+                </dd>
+                <dt class = "col-sm-5">
+                    @Html.DisplayNameFor(model => model.link)
+                </dt>
+                <dd class = "col-sm-10">
+                    <a class="btn btn-info" href="@Model.link" target="_blank">Go To Meeting</a>
+                </dd>
+                <dt class = "col-sm-5">
+                    @Html.DisplayNameFor(model => model.linkId)
+                </dt>
+                <dd class = "col-sm-10">
+                    @Html.DisplayFor(model => model.linkId)
+                </dd>
+                <dt class = "col-sm-5">
+                    @Html.DisplayNameFor(model => model.password)
+                </dt>
+                <dd class = "col-sm-10">
+                    @Html.DisplayFor(model => model.password)
+                </dd>
+                <dt class = "col-sm-5">
+                    @Html.DisplayNameFor(model => model.type)
+                </dt>
+                <dd class = "col-sm-10">
+                    @Html.DisplayFor(model => model.type)
+                </dd>
+                <dt class = "col-sm-5">
+                    @Html.DisplayNameFor(model => model.Seminar_Date)
+                </dt>
+                <dd class = "col-sm-10">
+                    @Html.DisplayFor(model => model.Seminar_Date)
+                </dd>
+                <dt class = "col-sm-5">
+                    @Html.DisplayNameFor(model => model.Starting_Time)
+                </dt>
+                <dd class = "col-sm-10">
+                    @Html.DisplayFor(model => model.Starting_Time)
+                </dd>
+                <dt class = "col-sm-5">
+                    @Html.DisplayNameFor(model => model.Ending_Time)
+                </dt>
+                <dd class = "col-sm-10">
+                    @Html.DisplayFor(model => model.Ending_Time)
+                </dd>
+            </dl>
+       </div>
+       <div class="col-md-6">
+           <h4>Organizer Details</h4>
+           <dl class="row">
+               <dt class = "col-sm-5">
+                    Full Name:
+                </dt>
+                <dd class = "col-sm-10">
+                    @Html.DisplayFor(model => model.Organizer.name)
+                </dd>
+                <dt class = "col-sm-5">
+                    Email:
+                </dt>
+                <dd class = "col-sm-10">
+                    @Html.DisplayFor(model => model.Organizer.email)
+                </dd>
+           </dl>
+       </div>
+   </div>
+</div>

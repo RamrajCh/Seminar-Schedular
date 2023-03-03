@@ -1,0 +1,74 @@
+@model IEnumerable<SMS.Models.Seminar>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<div class="card">
+  <div class="card-body">
+    <div class="row">
+        <div class="col-md-4">
+            <p> Hello @ViewBag.organizer.name </p>
+            <p>Email: @ViewBag.organizer.email</p>
+        </div>
+        <div class="col-md-2"></div>
+        <div class="col-md-6">
+            <a class="btn btn-primary" href="@Url.Action("CreateNewSeminar", "Event")">Create New Seminar</a>
+            <a class="btn btn-secondary" href="@Url.Action("ChangeOrganizerPassword", "Home")">Change Password</a>
+            <a class="btn btn-danger" href="@Url.Action("Logout", "Home")">Logout</a>
+        </div>
+    </div>
+  </div>
+</div>
+
+@if(!ViewBag.organizer.isVerified){
+    <div class="alert alert-warning">
+        <strong>Warning!</strong> Your account has not been verified. Admin will verify your account soon.
+    </div>
+}
+
+<h3>My Upcoming Seminars</h3>
+<hr>
+
+<div class="row">
+@foreach (var item in Model) {
+    <div class="col-md-4">
+        <div class="card" style="box-shadow: 1px 1px 2rem rgba(0, 0, 0, 0.3); border-radius: 10px; margin-bottom:20px; height:350px;">
+            <div class="card-body seminar-contents">
+                <div class="seminar-container">
+                    <h3 class="seminar-date">@Html.DisplayFor(modelItem => item.Seminar_Date), @Html.DisplayFor(modelItem => item.Starting_Time) - @Html.DisplayFor(modelItem => item.Ending_Time)</h3>
+                    <h1 class="seminar-topic">@Html.DisplayFor(modelItem => item.topic)</h1>
+                    <p class="seminar-info">
+                        <span class="seminar-info-label">Platform: </span>
+                        <span class="seminar-info-value">@Html.DisplayFor(modelItem => item.platform)</span>
+                    </p>
+                    @if (item.linkId != null) {
+                        <p class="seminar-info">
+                            <span class="seminar-info-label">Link ID: </span>
+                            <span class="seminar-info-value">@Html.DisplayFor(modelItem => item.linkId)</span>
+                        </p>
+                    }
+                    @if (item.password != null){
+                        <p class="seminar-info">
+                            <span class="seminar-info-label">Password: </span>
+                            <span class="seminar-info-value">@Html.DisplayFor(modelItem => item.password)</span>
+                        </p>
+                    }
+                    <p class="seminar-info">
+                        <span class="seminar-info-label">Seminar Type: </span>
+                        <span class="seminar-info-value">@Html.DisplayFor(modelItem => item.type)</span>
+                    </p>
+                    <p class="mt-2">
+                        <a class="btn btn-primary" asp-action="ViewSeminarDetails" asp-controller="Event" asp-route-id="@item.id">Details</a> 
+                        <a class="btn btn-secondary" asp-action="EditSeminar" asp-controller="Event" asp-route-id="@item.id">Edit</a> 
+                        <a class="btn btn-danger" asp-action="DeleteSeminar" asp-controller="Event" asp-route-id="@item.id">Delete</a>
+                    </p>
+                    <p>
+                        <a class="btn btn-success" href="@item.link" target="_blank">Go To Meeting</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+</div>

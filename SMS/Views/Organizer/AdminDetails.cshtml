@@ -1,0 +1,51 @@
+@model SMS.Models.Organizer
+
+@{
+    ViewData["Title"] = "Details";
+    Layout= "../Shared/_AdminPageLayout.cshtml";
+}
+
+<h1>Details</h1>
+
+<div>
+    <h4>Organizer</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.email)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.email)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.password)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.password)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.name)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.name)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.isVerified)
+        </dt>
+        @if(Model.isVerified){
+            <dd class = "col-sm-10">
+                Verified <a asp-controller="Organizer" asp-action="UnverifyOrganizer" asp-route-id="@Model.id" class="text-decoration-none"><small>Click here to unverify.</small></a>
+            </dd>
+        }
+        else{
+            <dd class = "col-sm-10">
+                Unverified <a asp-controller="Organizer" asp-action="VerifyOrganizer" asp-route-id="@Model.id" class="text-decoration-none"><small>Click here to verify.</small></a>
+            </dd>
+        } 
+            
+    </dl>
+</div>
+<div>
+    <a asp-action="AdminEdit" asp-route-id="@Model?.id">Edit</a> |
+    <a asp-action="AdminIndex">Back to List</a>
+</div>

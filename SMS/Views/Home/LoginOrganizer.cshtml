@@ -1,0 +1,34 @@
+@model SMS.Models.Organizer
+
+@{
+    ViewData["Title"] = "Organizer Login";
+    Layout= "../Shared/_LoginPageLayout.cshtml";  
+}
+
+<h4 class="h4 mb-3">Organizer Log In</h1>
+@if(ViewBag.message != null){
+    <div class="@ViewBag.messageClass">
+        @Html.Raw(ViewBag.message)
+    </div>
+}
+
+@using (Html.BeginForm("LoginOrganizer", "Home", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+    <div class="form-floating">
+        @Html.LabelFor(m => m.email)
+        @Html.TextBoxFor(m => m.email, "", new { @class = "form-control"})
+
+    </div>
+    <div class="form-floating">
+        @Html.LabelFor(m => m.password)
+        @Html.PasswordFor(m => m.password, new { @class = "form-control" })
+    </div>
+    <button class="w-100 btn btn-lg btn-primary" type="submit">Sign In</button>
+    <p class="mt-2 text-muted">
+        Need An Account? <a class="ml-2" asp-controller="Home" asp-action="RegisterOrganizer">Sign Up</a>
+    </p>
+    <p class="mt-2 text-muted">
+        Not an Organizer? <a class="ml-2" asp-controller="Home" asp-action="Login">Log In Normally</a>
+    </p>
+}

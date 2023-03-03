@@ -1,0 +1,31 @@
+@model SMS.Models.Admin
+
+@{
+    ViewData["Title"] = "Admin Login";
+    Layout= "../Shared/_LoginPageLayout.cshtml";  
+}
+
+<h4 class="h4 mb-3">Admin Log In</h1>
+@if(ViewBag.message != null){
+    <div class="@ViewBag.messageClass">
+        @Html.Raw(ViewBag.message)
+    </div>
+}
+
+@using (Html.BeginForm("LoginAdmin", "Home", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+    <div class="form-floating">
+        @Html.LabelFor(m => m.username)
+        @Html.TextBoxFor(m => m.username, "", new { @class = "form-control"})
+
+    </div>
+    <div class="form-floating">
+        @Html.LabelFor(m => m.password)
+        @Html.PasswordFor(m => m.password, new { @class = "form-control" })
+    </div>
+    <button class="w-100 btn btn-lg btn-primary" type="submit">Sign In</button>
+    <p class="mt-2 text-muted">
+        Not an Admin? <a class="ml-2" asp-controller="Home" asp-action="Login">Log In</a>
+    </p>
+}

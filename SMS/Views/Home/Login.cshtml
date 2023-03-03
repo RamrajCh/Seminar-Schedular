@@ -1,0 +1,31 @@
+@model SMS.Models.Person
+
+@{
+    ViewData["Title"] = "Login";
+    Layout= "../Shared/_LoginPageLayout.cshtml";  
+}
+
+<h4 class="h4 mb-3">Sign In</h1>
+@if(ViewBag.message != null){
+    <div class="@ViewBag.messageClass">
+        @Html.Raw(ViewBag.message)
+    </div>
+}
+
+@using (Html.BeginForm("Login", "Home", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+    <div class="form-floating">
+        <label for="username">KOI Id/ Email</label>
+        <input type="text" class="form-control" id="username" name="username" value="" />
+
+    </div>
+    <div class="form-floating">
+        @Html.LabelFor(m => m.password)
+        @Html.PasswordFor(m => m.password, new { @class = "form-control" })
+    </div>
+    <button class="w-100 btn btn-lg btn-primary" type="submit">Sign In</button>
+    <p class="mt-2 text-muted">
+        Need An Account? <a class="ml-2" asp-controller="Home" asp-action="Register">Sign Up</a>
+    </p>
+}

@@ -1,0 +1,47 @@
+/* .seminar-contents {
+  padding: 3rem 3rem 3rem 3rem;
+  background: #fff;
+  max-width: 400px;
+  border-radius: 10px;
+  transform: translate(-50%, -50%);
+  box-shadow: 1px 1px 2rem rgba(0, 0, 0, 0.3);
+} */
+
+.seminar-date {
+  margin: 0 0 0.5rem 0;
+  color: #999;
+  font-size: 1rem;
+}
+
+.seminar-topic {
+  font-size: 2rem;
+  letter-spacing: 0.5px;
+  color: #333;
+}
+
+.seminar-info {
+margin-bottom: -0.1rem;
+  font-size: 1.1rem;
+  color: #333;
+}
+
+.seminar-info-label {
+  font-size: 0.9rem;
+  color: #999;
+}
+
+.seminar-info-value {
+  font-size: 1.1rem;
+  color: #333;
+}
+
+.seminar-detail-btn {
+  border: none;
+  outline: none;
+  background: linear-gradient(90deg, #2596be, #2596be);
+  padding: 1rem 1rem;
+  border-radius: 20px;
+  color: white;
+  transition: all .2s ease-in;
+  text-decoration: none;
+}
